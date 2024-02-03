@@ -15,8 +15,8 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     accountAddress = message.interactor.verified_accounts[0];
   }
 
-  let imageUrl = ''
-  let title
+  let imageUrl = `${NEXT_PUBLIC_URL}/park-1.png`
+  let title = "PLACEHOLDER"
   let pageUrl = `${NEXT_PUBLIC_URL}/api/frame`
 
   // if (body?.untrustedData?.inputText) {
