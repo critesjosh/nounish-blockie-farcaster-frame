@@ -6,6 +6,7 @@
     "dev": "next dev",
     "format": "prettier --log-level warn --write .",
     "start": "next start",
+    "get-blockie": "node --loader ts-node/esm scripts/interact.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",

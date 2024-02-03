@@ -10,7 +10,7 @@ const frameMetadata = getFrameMetadata({
       label: 'Get random Wikipedia article',
     },
   ],
-  image: `${NEXT_PUBLIC_URL}/park-1.png`,
+  image: `${NEXT_PUBLIC_URL}/head.png`,
   // input: {
   //   text: 'Tell me a boat story',
   // },
