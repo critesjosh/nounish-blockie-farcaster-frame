@@ -17,37 +17,41 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
 
   let imageUrl = ''
   let title
-  let pageUrl
+  let pageUrl = `${NEXT_PUBLIC_URL}/api/frame`
 
-  await fetch('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&origin=*')
-    .then(response => response.json())
-    .then(async (data) => {
-      const page = data.query.random[0]; // Get the first random article from the response
-      title = page.title;
-      const pageId = page.id;
+  // if (body?.untrustedData?.inputText) {
+  //   text = body.untrustedData.inputText;
+  // }
 
-      // Construct the URL to the random article
-      pageUrl = `https://en.wikipedia.org/wiki?curid=${pageId}`;
+  if (body.untrustedData.buttonIndex == 1) {
+    await fetch('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&origin=*')
+      .then(response => response.json())
+      .then(async (data) => {
+        const page = data.query.random[0]; // Get the first random article from the response
+        title = page.title;
+        const pageId = page.id;
 
-      console.log(`Title: ${title}`);
-      console.log(`URL: ${pageUrl}`);
+        // Construct the URL to the random article
+        pageUrl = `https://en.wikipedia.org/wiki?curid=${pageId}`;
 
-      await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&pageids=${pageId.toString()}&format=json&pithumbsize=500&origin=*`)
-        .then(response => response.json())
-        .then(data => {
-          const page = data.query.pages[pageId];
-          if (page.thumbnail && page.thumbnail.source) {
-            imageUrl = page.thumbnail.source
-          } else {
-            console.log("No thumbnail available for this page.");
-          }
-        })
-        .catch(error => console.error('Error fetching page image:', error));
-    })
-    .catch(error => console.error('Error fetching random Wikipedia article:', error));
+        console.log(`Title: ${title}`);
+        console.log(`URL: ${pageUrl}`);
 
-  if (body?.untrustedData?.inputText) {
-    text = body.untrustedData.inputText;
+        await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&pageids=${pageId.toString()}&format=json&pithumbsize=500&origin=*`)
+          .then(response => response.json())
+          .then(data => {
+            const page = data.query.pages[pageId];
+            if (page.thumbnail && page.thumbnail.source) {
+              imageUrl = page.thumbnail.source
+            } else {
+              console.log("No thumbnail available for this page.");
+            }
+          })
+          .catch(error => console.error('Error fetching page image:', error));
+      })
+      .catch(error => console.error('Error fetching random Wikipedia article:', error));
+  } else {
+
   }
 
   return new NextResponse(
@@ -62,7 +66,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         }
       ],
       image: imageUrl,
-      post_url: `${NEXT_PUBLIC_URL}/api/frame`,
+      post_url: pageUrl,
     }),
   );
 }
