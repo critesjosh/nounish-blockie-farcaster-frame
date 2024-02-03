@@ -1,5 +1,5 @@
 {
-  "name": "testing-frames",
+  "name": "nounish-blockie-frame",
   "version": "0.2.0",
   "scripts": {
     "build": "rm -rf .next && next build",
