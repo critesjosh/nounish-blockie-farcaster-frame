@@ -1,5 +1,5 @@
 {
-  "name": "a-frame-in-100-lines",
+  "name": "testing-frames",
   "version": "0.2.0",
   "scripts": {
     "build": "rm -rf .next && next build",
@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "https://twitter.com/Zizzamia",
+  "author": "https://twitter.com/critesjosh_",
   "license": "MIT",
   "dependencies": {
     "@coinbase/onchainkit": "0.4.3",

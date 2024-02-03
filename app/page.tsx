@@ -7,22 +7,22 @@ const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Click Me',
+      label: 'Get random article',
     },
   ],
   image: `${NEXT_PUBLIC_URL}/park-1.png`,
-  input: {
-    text: 'Tell me a boat story',
-  },
+  // input: {
+  //   text: 'Tell me a boat story',
+  // },
   post_url: `${NEXT_PUBLIC_URL}/api/frame`,
 });
 
 export const metadata: Metadata = {
-  title: 'zizzamia.xyz',
-  description: 'LFG',
+  title: 'joshcrites.com',
+  description: 'testing out some frames',
   openGraph: {
-    title: 'zizzamia.xyz',
-    description: 'LFG',
+    title: 'joshcrites.com',
+    description: 'test',
     images: [`${NEXT_PUBLIC_URL}/park-1.png`],
   },
   other: {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>zizzamia.xyz</h1>
+      <h1>joshcrites.com</h1>
     </>
   );
 }
