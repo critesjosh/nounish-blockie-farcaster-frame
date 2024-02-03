@@ -61,7 +61,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
           label: `Another random`,
         },
         {
-          label: "Visit page",
+          label: `Visit ${title}`,
           action: 'post_redirect'
         }
       ],

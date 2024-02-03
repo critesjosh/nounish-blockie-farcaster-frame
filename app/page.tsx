@@ -7,7 +7,7 @@ const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Get random article',
+      label: 'Get random Wikipedia article',
     },
   ],
   image: `${NEXT_PUBLIC_URL}/park-1.png`,
