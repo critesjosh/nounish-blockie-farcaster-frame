@@ -15,7 +15,36 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     accountAddress = message.interactor.verified_accounts[0];
   }
 
-  console.log(accountAddress)
+  let imageUrl = ''
+  let title
+  let pageUrl
+
+  await fetch('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&origin=*')
+    .then(response => response.json())
+    .then(async (data) => {
+      const page = data.query.random[0]; // Get the first random article from the response
+      title = page.title;
+      const pageId = page.id;
+
+      // Construct the URL to the random article
+      pageUrl = `https://en.wikipedia.org/wiki?curid=${pageId}`;
+
+      console.log(`Title: ${title}`);
+      console.log(`URL: ${pageUrl}`);
+
+      await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&pageids=${pageId.toString()}&format=json&pithumbsize=500&origin=*`)
+        .then(response => response.json())
+        .then(data => {
+          const page = data.query.pages[pageId];
+          if (page.thumbnail && page.thumbnail.source) {
+            imageUrl = page.thumbnail.source
+          } else {
+            console.log("No thumbnail available for this page.");
+          }
+        })
+        .catch(error => console.error('Error fetching page image:', error));
+    })
+    .catch(error => console.error('Error fetching random Wikipedia article:', error));
 
   if (body?.untrustedData?.inputText) {
     text = body.untrustedData.inputText;
@@ -25,10 +54,14 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     getFrameHtmlResponse({
       buttons: [
         {
-          label: `Text: ${text}`,
+          label: `Another random`,
         },
+        {
+          label: "Visit page",
+          action: 'post_redirect'
+        }
       ],
-      image: `${NEXT_PUBLIC_URL}/park-2.png`,
+      image: imageUrl,
       post_url: `${NEXT_PUBLIC_URL}/api/frame`,
     }),
   );
