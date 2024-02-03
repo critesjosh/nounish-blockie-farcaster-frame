@@ -5,7 +5,7 @@ import 'dotenv/config';
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
-  let accountAddress: string | undefined = '';
+  let accountAddress: string | undefined = 'not set';
   let text: string | undefined = '';
 
   const body: FrameRequest = await req.json();
@@ -14,6 +14,8 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   if (isValid) {
     accountAddress = message.interactor.verified_accounts[0];
   }
+
+  console.log(accountAddress)
 
   if (body?.untrustedData?.inputText) {
     text = body.untrustedData.inputText;
