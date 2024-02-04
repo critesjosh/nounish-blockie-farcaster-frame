@@ -23,7 +23,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'joshcrites.com',
     description: 'test',
-    images: [`${NEXT_PUBLIC_URL}/park-1.png`],
+    images: [{
+      url: `${NEXT_PUBLIC_URL}/api/og.png`,
+    }],
   },
   other: {
     ...frameMetadata,
