@@ -1,7 +1,7 @@
 import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/onchainkit';
 import { NextRequest, NextResponse } from 'next/server';
 import 'dotenv/config';
-import { createPublicClient, http, fallback } from 'viem'
+import { createPublicClient, http, fallback, isAddress } from 'viem'
 import { mainnet } from 'viem/chains'
 import * as artifact from '../../../artifacts/NounishBlockies.json' assert { type: "json" }
 import * as seedArtifact from '../../../artifacts/INounsSeeder.json' assert { type: "json" }
@@ -28,7 +28,11 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
   const { isValid, message } = await getFrameMessage(body, { neynarApiKey: process.env.NEYNAR_API_KEY });
 
-  if (isValid) {
+  if (body?.untrustedData?.inputText && isAddress(body?.untrustedData?.inputText)) {
+    text = body.untrustedData.inputText;
+  }
+
+  if (isValid && !isAddress(text)) {
     accountAddress = message.interactor.verified_accounts[0];
   }
 
@@ -75,9 +79,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   let imageUrl = dataUri
   let pageUrl = `${NEXT_PUBLIC_URL}/api/frame`
 
-  // if (body?.untrustedData?.inputText) {
-  //   text = body.untrustedData.inputText;
-  // }
+
 
   // if (body.untrustedData.buttonIndex == 1) {
   //   console.log("in 1")
@@ -89,9 +91,12 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     getFrameHtmlResponse({
       buttons: [
         {
-          label: `Render my head`,
+          label: `Render another`,
         }
       ],
+      input: {
+        text: "Enter an Eth address to render"
+      },
       image: imageUrl,
       post_url: pageUrl,
     }),
