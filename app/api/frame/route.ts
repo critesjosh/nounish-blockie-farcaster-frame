@@ -5,10 +5,21 @@ import { createPublicClient, http, fallback } from 'viem'
 import { mainnet } from 'viem/chains'
 import * as artifact from '../../../artifacts/NounishBlockies.json' assert { type: "json" }
 import * as seedArtifact from '../../../artifacts/INounsSeeder.json' assert { type: "json" }
-import { createCanvas, CanvasRenderingContext2D } from 'canvas';
-import { Canvg } from 'canvg';
+import canvas, { createCanvas, CanvasRenderingContext2D } from 'canvas';
+import {
+  Canvg,
+  presets
+} from 'canvg'
+import { DOMParser } from 'xmldom'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
+
+// for canvg
+const preset = presets.node({
+  DOMParser,
+  canvas,
+  fetch
+});
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   let accountAddress: string | undefined = 'not set';
@@ -102,11 +113,11 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Buffer {
+async function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Promise<Buffer> {
   const canvas = createCanvas(width, height);
-  const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d');
   // @ts-ignore
-  const v = Canvg.fromString(ctx, svgBuffer.toString());
+  const v = await Canvg.from(ctx, svgBuffer.toString(), preset);
 
   v.start();
 
