@@ -2,7 +2,7 @@
   "name": "nounish-blockie-frame",
   "version": "0.2.0",
   "scripts": {
-    "build": "rm -rf .next && next build",
+    "build": "npx puppeteer browsers install chrome && rm -rf .next && next build",
     "dev": "next dev",
     "format": "prettier --log-level warn --write .",
     "start": "next start",
