@@ -87,6 +87,9 @@ function getRandomInt(min: number, max: number): number {
 async function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Promise<string> {
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
+
+    const scaleFactor = 0.5;
+    ctx.scale(scaleFactor, scaleFactor);
     // @ts-ignore
     const v = await Canvg.from(ctx, svgBuffer.toString(), preset);
 

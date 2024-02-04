@@ -35,7 +35,6 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const alchemy = http(process.env.ALCHEMY_URL)
   const infura = http(process.env.INFURA_URL)
 
-
   const client = createPublicClient({
     chain: mainnet,
     transport: fallback([alchemy, infura]),
@@ -113,6 +112,8 @@ function getRandomInt(min: number, max: number): number {
 async function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Promise<string> {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
+  const scaleFactor = 0.5;
+  ctx.scale(scaleFactor, scaleFactor);
   // @ts-ignore
   const v = await Canvg.from(ctx, svgBuffer.toString(), preset);
 

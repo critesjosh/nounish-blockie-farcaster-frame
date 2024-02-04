@@ -7,7 +7,7 @@ const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Get random Wikipedia article',
+      label: 'Get your blockie',
     },
   ],
   image: `${NEXT_PUBLIC_URL}/head.png`,
@@ -18,11 +18,11 @@ const frameMetadata = getFrameMetadata({
 });
 
 export const metadata: Metadata = {
-  title: 'joshcrites.com',
-  description: 'testing out some frames',
+  title: 'Nounish blockie renderer',
+  description: 'explore blockies in frames',
   openGraph: {
-    title: 'joshcrites.com',
-    description: 'test',
+    title: 'Nounish blockie renderer',
+    description: 'explore blockies in frames',
     images: [{
       url: `${NEXT_PUBLIC_URL}/head.png`,
     }],
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>joshcrites.com</h1>
+      <h1>Nounish blockie renderer</h1>
     </>
   );
 }
