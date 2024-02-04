@@ -66,7 +66,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   // const encodedPng = (await svg2png(Buffer.from(svgContent), {})).toString('base64')
   const width: number = 800; // Example width
   const height: number = 600; // Example height
-  const encodedPng = convertSvgToPng(svgContent)
+  const encodedPng = convertSvgToPng(svgContent, width, height)
   const dataUri = `data:image/png;base64,${encodedPng}`;
   // fs.writeFileSync("../../../public/tmp-head.png", pngBuffer)
 
