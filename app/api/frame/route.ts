@@ -8,7 +8,8 @@ import * as seedArtifact from '../../../artifacts/INounsSeeder.json' assert { ty
 // @ts-ignore
 import svg2png from 'svg2png'
 import * as fs from 'fs'
-
+import { createCanvas, CanvasRenderingContext2D } from 'canvas';
+import { Canvg } from 'canvg';
 // import sharp from 'sharp'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
@@ -55,11 +56,14 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   })
 
   const base64Data = data.split(",")[1];
-  const svgContent = Buffer.from(base64Data, 'base64').toString();
+  const svgContent = Buffer.from(base64Data, 'base64');
 
 
   // sharp(Buffer.from(svgContent)).png().toFile('../../../public/tmp-head.png')
-  const encodedPng = (await svg2png(Buffer.from(svgContent), {})).toString('base64')
+  // const encodedPng = (await svg2png(Buffer.from(svgContent), {})).toString('base64')
+  const width: number = 800; // Example width
+  const height: number = 600; // Example height
+  const encodedPng = convertSvgToPng(svgContent, width, height)
   const dataUri = `data:image/png;base64,${encodedPng}`;
   // fs.writeFileSync("../../../public/tmp-head.png", pngBuffer)
 
@@ -100,4 +104,17 @@ function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min); // Ensures the minimum is inclusive
   max = Math.floor(max); // Ensures the maximum is exclusive
   return Math.floor(Math.random() * (max - min) + min);
+}
+
+function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Buffer {
+  const canvas = createCanvas(width, height);
+  const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
+  const v = Canvg.fromString(ctx, svgBuffer.toString());
+
+  // Render SVG onto canvas
+  v.start();
+
+  // Get PNG buffer from canvas
+  const pngBuffer: Buffer = canvas.toBuffer('image/png');
+  return pngBuffer;
 }
