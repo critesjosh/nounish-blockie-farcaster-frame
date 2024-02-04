@@ -5,8 +5,11 @@ import { createPublicClient, http, fallback } from 'viem'
 import { mainnet } from 'viem/chains'
 import * as artifact from '../../../artifacts/NounishBlockies.json' assert { type: "json" }
 import * as seedArtifact from '../../../artifacts/INounsSeeder.json' assert { type: "json" }
+// @ts-ignore
+import svg2png from 'svg2png'
+import * as fs from 'fs'
 
-import sharp from 'sharp'
+// import sharp from 'sharp'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
@@ -53,8 +56,9 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
 
   const base64Data = data.split(",")[1];
   const svgContent = Buffer.from(base64Data, 'base64').toString();
-  sharp(Buffer.from(svgContent)).png().toFile('../../../public/tmp-head.png')
-
+  // sharp(Buffer.from(svgContent)).png().toFile('../../../public/tmp-head.png')
+  const pngBuffer = await svg2png(Buffer.from(svgContent))
+  fs.writeFileSync("../../../public/tmp-head.png", pngBuffer)
 
   let imageUrl = `${NEXT_PUBLIC_URL}/tmp-head.png`
   let pageUrl = `${NEXT_PUBLIC_URL}/api/frame`
@@ -63,11 +67,11 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   //   text = body.untrustedData.inputText;
   // }
 
-  if (body.untrustedData.buttonIndex == 1) {
-    console.log("in 1")
-  } else {
-    console.log("in 2")
-  }
+  // if (body.untrustedData.buttonIndex == 1) {
+  //   console.log("in 1")
+  // } else {
+  //   console.log("in 2")
+  // }
 
   return new NextResponse(
     getFrameHtmlResponse({
