@@ -5,15 +5,8 @@ import { createPublicClient, http, fallback } from 'viem'
 import { mainnet } from 'viem/chains'
 import * as artifact from '../../../artifacts/NounishBlockies.json' assert { type: "json" }
 import * as seedArtifact from '../../../artifacts/INounsSeeder.json' assert { type: "json" }
-// @ts-ignore
-import svg2png from 'svg2png'
-import * as fs from 'fs'
 import { createCanvas, CanvasRenderingContext2D } from 'canvas';
 import { Canvg } from 'canvg';
-// import sharp from 'sharp'
-
-import puppeteer from 'puppeteer';
-
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
