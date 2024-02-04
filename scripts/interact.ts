@@ -2,6 +2,19 @@ import { createPublicClient, http, fallback } from 'viem'
 import { mainnet } from 'viem/chains'
 import * as artifact from '../artifacts/NounishBlockies.json' assert { type: "json" }
 import * as seedArtifact from '../artifacts/INounsSeeder.json' assert { type: "json" }
+import canvas, { createCanvas, CanvasRenderingContext2D } from 'canvas';
+import {
+    Canvg,
+    presets
+} from 'canvg'
+import { DOMParser } from 'xmldom'
+
+// for canvg
+const preset = presets.node({
+    DOMParser,
+    canvas,
+    fetch
+});
 
 async function main() {
     const alchemy = http(process.env.ALCHEMY_URL)
@@ -53,9 +66,13 @@ async function main() {
     // })
 
     const base64Data = data.split(",")[1];
-    const svgContent = Buffer.from(base64Data, 'base64').toString();
+    const svgContent = Buffer.from(base64Data, 'base64');
+    const width: number = 800; // Example width
+    const height: number = 600; // Example height
 
-    console.log(svgContent)
+    const encodedPng = await convertSvgToPng(svgContent, width, height)
+    const dataUri = `data:image/png;base64,${encodedPng}`;
+    console.log(dataUri)
     // sharp(Buffer.from(svgContent)).png().toFile('./public/head.png')
 }
 
@@ -65,4 +82,17 @@ function getRandomInt(min: number, max: number): number {
     min = Math.ceil(min); // Ensures the minimum is inclusive
     max = Math.floor(max); // Ensures the maximum is exclusive
     return Math.floor(Math.random() * (max - min) + min);
+}
+
+async function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Promise<string> {
+    const canvas = createCanvas(width, height);
+    const ctx = canvas.getContext('2d');
+    // @ts-ignore
+    const v = await Canvg.from(ctx, svgBuffer.toString(), preset);
+
+    v.start();
+
+    // Get PNG buffer from canvas
+    const pngBuffer: Buffer = canvas.toBuffer('image/png');
+    return pngBuffer.toString('base64');
 }

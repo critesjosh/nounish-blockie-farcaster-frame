@@ -120,5 +120,6 @@ async function convertSvgToPng(svgBuffer: Buffer, width: number, height: number)
 
   // Get PNG buffer from canvas
   const pngBuffer: Buffer = canvas.toBuffer('image/png');
-  return pngBuffer.toString('base64url');
+  console.log(pngBuffer.toString('base64url'))
+  return pngBuffer.toString('base64');
 }
