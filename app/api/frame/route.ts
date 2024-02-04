@@ -110,7 +110,7 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-async function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Promise<Buffer> {
+async function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Promise<string> {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
   // @ts-ignore
