@@ -66,13 +66,10 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const svgContent = Buffer.from(base64Data, 'base64');
 
 
-  // sharp(Buffer.from(svgContent)).png().toFile('../../../public/tmp-head.png')
-  // const encodedPng = (await svg2png(Buffer.from(svgContent), {})).toString('base64')
   const width: number = 800; // Example width
   const height: number = 600; // Example height
   const encodedPng = await convertSvgToPng(svgContent, width, height)
   const dataUri = `data:image/png;base64,${encodedPng}`;
-  // fs.writeFileSync("../../../public/tmp-head.png", pngBuffer)
 
 
   let imageUrl = dataUri
@@ -123,17 +120,5 @@ async function convertSvgToPng(svgBuffer: Buffer, width: number, height: number)
 
   // Get PNG buffer from canvas
   const pngBuffer: Buffer = canvas.toBuffer('image/png');
-  return pngBuffer;
+  return pngBuffer.toString('base64url');
 }
-
-// async function convertSvgToPng(svgBuffer: Buffer): Promise<Buffer> {
-//   const browser = await puppeteer.launch();
-//   const page = await browser.newPage();
-//   await page.setContent(svgBuffer.toString());
-
-//   // Specify the screenshot type explicitly to ensure the return type is Buffer
-//   const pngBuffer: Buffer = await page.screenshot({ encoding: 'binary' }) as Buffer;
-
-//   await browser.close();
-//   return pngBuffer;
-// }
