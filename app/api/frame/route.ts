@@ -63,11 +63,12 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
 
   const base64Data = data.split(",")[1];
   const svgContent = Buffer.from(base64Data, 'base64');
+  const scaleFactor = 0.5
+  const svgString = svgContent.toString().replace('<svg ', `<svg transform="scale(${scaleFactor})" `);
 
-
-  const width: number = 800; // Example width
-  const height: number = 600; // Example height
-  const encodedPng = await convertSvgToPng(svgContent, width, height)
+  const width: number = 1000; // Example width
+  const height: number = 1000; // Example height
+  const encodedPng = await convertSvgToPng(svgString, width, height)
   const dataUri = `data:image/png;base64,${encodedPng}`;
 
 
@@ -109,7 +110,7 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-async function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Promise<string> {
+async function convertSvgToPng(svgBuffer: string, width: number, height: number): Promise<string> {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
   const scaleFactor = 0.5;
