@@ -44,7 +44,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     address: "0xCC8a0FB5ab3C7132c1b2A0109142Fb112c4Ce515",
     abi: seederAbi,
     functionName: "generateSeed",
-    args: [rand]
+    args: [rand, "0x6229c811D04501523C6058bfAAc29c91bb586268"]
   })
 
   const data = await client.readContract({
