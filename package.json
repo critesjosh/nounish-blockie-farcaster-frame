@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@coinbase/onchainkit": "0.4.3",
+    "bufferutil": "^4.0.8",
     "dotenv": "^16.4.1",
     "ethers": "^6.10.0",
     "next": "13.5.6",
@@ -22,6 +23,7 @@
     "react-dom": "^18.2.0",
     "sharp": "^0.33.2",
     "ts-node": "^10.9.2",
+    "utf-8-validate": "^6.0.3",
     "viem": "^2.7.2"
   },
   "devDependencies": {
