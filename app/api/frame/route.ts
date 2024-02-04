@@ -59,11 +59,12 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
 
 
   // sharp(Buffer.from(svgContent)).png().toFile('../../../public/tmp-head.png')
-  // const pngBuffer = await svg2png(Buffer.from(svgContent), {})
+  const encodedPng = (await svg2png(Buffer.from(svgContent), {})).toString('base64')
+  const dataUri = `data:image/png;base64,${encodedPng}`;
   // fs.writeFileSync("../../../public/tmp-head.png", pngBuffer)
 
 
-  let imageUrl = `${NEXT_PUBLIC_URL}/api/og`
+  let imageUrl = dataUri
   let pageUrl = `${NEXT_PUBLIC_URL}/api/frame`
 
   // if (body?.untrustedData?.inputText) {
