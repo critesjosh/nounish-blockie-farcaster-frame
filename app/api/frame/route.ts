@@ -110,13 +110,13 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-async function convertSvgToPng(svgBuffer: string, width: number, height: number): Promise<string> {
+async function convertSvgToPng(svgString: string, width: number, height: number): Promise<string> {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
-  const scaleFactor = 0.5;
-  ctx.scale(scaleFactor, scaleFactor);
+  // const scaleFactor = 0.5;
+  // ctx.scale(scaleFactor, scaleFactor);
   // @ts-ignore
-  const v = await Canvg.from(ctx, svgBuffer.toString(), preset);
+  const v = await Canvg.from(ctx, svgString, preset);
 
   v.start();
 
