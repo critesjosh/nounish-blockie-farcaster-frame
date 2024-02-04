@@ -8,8 +8,8 @@ import * as seedArtifact from '../../../artifacts/INounsSeeder.json' assert { ty
 // @ts-ignore
 import svg2png from 'svg2png'
 import * as fs from 'fs'
-// import { createCanvas, CanvasRenderingContext2D } from 'canvas';
-// import { Canvg } from 'canvg';
+import { createCanvas, CanvasRenderingContext2D } from 'canvas';
+import { Canvg } from 'canvg';
 // import sharp from 'sharp'
 
 import puppeteer from 'puppeteer';
@@ -109,27 +109,27 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-// function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Buffer {
-//   const canvas = createCanvas(width, height);
-//   const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
-//   // @ts-ignore
-//   const v = Canvg.fromString(ctx, svgBuffer.toString());
+function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Buffer {
+  const canvas = createCanvas(width, height);
+  const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
+  // @ts-ignore
+  const v = Canvg.fromString(ctx, svgBuffer.toString());
 
-//   v.start();
+  v.start();
 
-//   // Get PNG buffer from canvas
-//   const pngBuffer: Buffer = canvas.toBuffer('image/png');
-//   return pngBuffer;
-// }
-
-async function convertSvgToPng(svgBuffer: Buffer): Promise<Buffer> {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.setContent(svgBuffer.toString());
-
-  // Specify the screenshot type explicitly to ensure the return type is Buffer
-  const pngBuffer: Buffer = await page.screenshot({ encoding: 'binary' }) as Buffer;
-
-  await browser.close();
+  // Get PNG buffer from canvas
+  const pngBuffer: Buffer = canvas.toBuffer('image/png');
   return pngBuffer;
 }
+
+// async function convertSvgToPng(svgBuffer: Buffer): Promise<Buffer> {
+//   const browser = await puppeteer.launch();
+//   const page = await browser.newPage();
+//   await page.setContent(svgBuffer.toString());
+
+//   // Specify the screenshot type explicitly to ensure the return type is Buffer
+//   const pngBuffer: Buffer = await page.screenshot({ encoding: 'binary' }) as Buffer;
+
+//   await browser.close();
+//   return pngBuffer;
+// }
