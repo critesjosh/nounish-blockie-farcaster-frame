@@ -109,9 +109,9 @@ function getRandomInt(min: number, max: number): number {
 function convertSvgToPng(svgBuffer: Buffer, width: number, height: number): Buffer {
   const canvas = createCanvas(width, height);
   const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
+  // @ts-ignore
   const v = Canvg.fromString(ctx, svgBuffer.toString());
 
-  // Render SVG onto canvas
   v.start();
 
   // Get PNG buffer from canvas
