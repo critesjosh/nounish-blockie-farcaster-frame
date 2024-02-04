@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: 'joshcrites.com',
     description: 'test',
     images: [{
-      url: `${NEXT_PUBLIC_URL}/api/og`,
+      url: `${NEXT_PUBLIC_URL}/head.png`,
     }],
   },
   other: {
