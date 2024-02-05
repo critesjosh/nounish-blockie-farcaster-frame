@@ -47,7 +47,7 @@ export async function POST(req: NextRequest): Promise<Response> {
   // if (buttonIndex != 1) {
   if (buttonIndex == 1) pageUrl = `${NEXT_PUBLIC_URL}/github`
   if (buttonIndex == 2) pageUrl = `${NEXT_PUBLIC_URL}/mint`
-  return NextResponse.redirect(pageUrl, {
+  return NextResponse.redirect(`${NEXT_PUBLIC_URL}/github`, {
     status: 302
   })
   // }
