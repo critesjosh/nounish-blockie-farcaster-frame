@@ -79,19 +79,28 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   let imageUrl = dataUri
   let pageUrl = `${NEXT_PUBLIC_URL}/api/frame`
 
-
-
-  // if (body.untrustedData.buttonIndex == 1) {
-  //   console.log("in 1")
-  // } else {
-  //   console.log("in 2")
-  // }
+  const buttonIndex = body.untrustedData.buttonIndex
+  if (buttonIndex == 1) {
+    // console.log("in 1")
+  } else if (buttonIndex == 2) {
+    pageUrl = "https://github.com/critesjosh/nounish-blockies"
+  } else {
+    pageUrl = "https://abi.ninja/0x76152c311630bBE2b472afE779f478B293CFAed3/mainnet?functions=mint"
+  }
 
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: [
         {
           label: `Render another`,
+        },
+        {
+          label: "Learn more",
+          action: "post_redirect"
+        },
+        {
+          label: "Mint one",
+          action: "post_redirect"
         }
       ],
       input: {

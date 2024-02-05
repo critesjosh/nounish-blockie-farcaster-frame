@@ -7,7 +7,7 @@ const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Get your blockie',
+      label: 'Render your blockie',
     },
   ],
   image: `${NEXT_PUBLIC_URL}/head.png`,
@@ -36,6 +36,7 @@ export default function Page() {
   return (
     <>
       <h1>Nounish blockie renderer</h1>
+      <a href="https://github.com/critesjosh/nounish-blockies">Project on Github</a>
     </>
   );
 }
