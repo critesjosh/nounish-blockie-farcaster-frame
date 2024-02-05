@@ -9,6 +9,14 @@ const frameMetadata = getFrameMetadata({
     {
       label: 'Render your blockie',
     },
+    {
+      label: "Learn more",
+      action: "post_redirect"
+    },
+    {
+      label: "Mint one",
+      action: "post_redirect"
+    }
   ],
   image: `${NEXT_PUBLIC_URL}/head.png`,
   post_url: `${NEXT_PUBLIC_URL}/api/render`,
