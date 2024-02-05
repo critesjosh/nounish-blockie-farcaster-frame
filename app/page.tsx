@@ -33,7 +33,9 @@ export default function Page() {
   return (
     <>
       <h1>Nounish blockie renderer</h1>
-      <a href="https://github.com/critesjosh/nounish-blockies">Project on Github</a>
+      <a href="https://github.com/critesjosh/nounish-blockies">NFT project on Github</a>
+      <a href="https://github.com/critesjosh/nounish-blockie-farcaster-frame">Frame code on Github</a>
+
     </>
   );
 }
