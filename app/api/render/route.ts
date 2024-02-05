@@ -38,27 +38,18 @@ export async function POST(req: NextRequest): Promise<Response> {
   const addressToRender = isAddress(text) ? text : accountAddress
   const png = await getImage(addressToRender)
 
-  let pageUrl = `${NEXT_PUBLIC_URL}/api/`
+  let pageUrl = `${NEXT_PUBLIC_URL}/api/render`
 
-  let path
   const buttonIndex = body.untrustedData.buttonIndex
 
   console.log("button index", buttonIndex)
-  if (buttonIndex == 1) {
-    path = "render"
-  } else if (buttonIndex == 2) {
-    path = "github"
-  } else {
-    path = "mint"
-  }
-  pageUrl = pageUrl + path
 
   console.log("page url", pageUrl)
 
   if (buttonIndex == 2 || buttonIndex == 3) {
-    const headers = new Headers()
+    if (buttonIndex == 2) pageUrl = `${NEXT_PUBLIC_URL}/github`
+    if (buttonIndex == 3) pageUrl = `${NEXT_PUBLIC_URL}/mint`
     return NextResponse.redirect(pageUrl, {
-      headers,
       status: 302
     })
   }
