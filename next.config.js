@@ -16,7 +16,20 @@ export default (phase, { defaultConfig }) => {
      * @type {import('next').NextConfig}
      */
     const nextConfig = {
-        /* config options here */
+        async redirects() {
+            return [
+                {
+                    source: '/github',
+                    destination: "https://github.com/critesjosh/nounish-blockies",
+                    permanent: false
+                },
+                {
+                    source: '/mint',
+                    destination: "https://abi.ninja/0x76152c311630bBE2b472afE779f478B293CFAed3/mainnet?functions=mint",
+                    permanent: false
+                }
+            ]
+        }
     }
     return nextConfig
 }
