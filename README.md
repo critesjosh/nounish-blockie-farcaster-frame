@@ -2,4 +2,4 @@
 
 Demo here: 
 
-- Nouish blockie project [here](https://github.com/critesjosh/nounish-blockies)
+- Nouish blockie project [here](https://github.com/critesjosh/nounish-blockies) 
