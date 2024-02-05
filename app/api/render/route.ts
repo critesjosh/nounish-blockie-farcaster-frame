@@ -44,7 +44,7 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   console.log(body)
 
-  if (buttonIndex == 2 || buttonIndex == 3) {
+  if (buttonIndex != 1) {
     if (buttonIndex == 2) pageUrl = `${NEXT_PUBLIC_URL}/github`
     if (buttonIndex == 3) pageUrl = `${NEXT_PUBLIC_URL}/mint`
     return NextResponse.redirect(pageUrl, {
