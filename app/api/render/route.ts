@@ -63,7 +63,7 @@ export async function POST(req: NextRequest): Promise<Response> {
         }
       ],
       input: {
-        text: "Enter another Eth address to render"
+        text: "Enter another address to render"
       },
       image: png,
       post_url: pageUrl,
