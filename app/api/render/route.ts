@@ -25,28 +25,28 @@ export async function POST(req: NextRequest): Promise<Response> {
   let accountAddress: string | undefined = 'not set';
   let text: string | undefined = '';
 
-  const body: FrameRequest = await req.json();
-  const { isValid, message } = await getFrameMessage(body, { neynarApiKey: process.env.NEYNAR_API_KEY });
+  // const body: FrameRequest = await req.json();
+  // const { isValid, message } = await getFrameMessage(body, { neynarApiKey: process.env.NEYNAR_API_KEY });
 
-  if (body?.untrustedData?.inputText && isAddress(body?.untrustedData?.inputText)) {
-    text = body.untrustedData.inputText;
-  }
-  if (isValid) {
-    accountAddress = message.interactor.verified_accounts[0];
-  }
+  // if (body?.untrustedData?.inputText && isAddress(body?.untrustedData?.inputText)) {
+  //   text = body.untrustedData.inputText;
+  // }
+  // if (isValid) {
+  //   accountAddress = message.interactor.verified_accounts[0];
+  // }
 
-  const addressToRender = isAddress(text) ? text : accountAddress
-  const png = await getImage(addressToRender)
+  // const addressToRender = isAddress(text) ? text : accountAddress
+  // const png = await getImage(addressToRender)
 
-  let pageUrl = `${NEXT_PUBLIC_URL}/api/render`
+  // let pageUrl = `${NEXT_PUBLIC_URL}/api/render`
 
-  const buttonIndex = body.untrustedData.buttonIndex
+  // const buttonIndex = body.untrustedData.buttonIndex
 
-  console.log(body)
+  // console.log(body)
 
-  // if (buttonIndex != 1) {
-  if (buttonIndex == 1) pageUrl = `${NEXT_PUBLIC_URL}/github`
-  if (buttonIndex == 2) pageUrl = `${NEXT_PUBLIC_URL}/mint`
+  // // if (buttonIndex != 1) {
+  // if (buttonIndex == 1) pageUrl = `${NEXT_PUBLIC_URL}/github`
+  // if (buttonIndex == 2) pageUrl = `${NEXT_PUBLIC_URL}/mint`
   return NextResponse.redirect(`${NEXT_PUBLIC_URL}/github`, {
     status: 302
   })
