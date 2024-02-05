@@ -6,9 +6,9 @@ const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
 const frameMetadata = getFrameMetadata({
   buttons: [
-    {
-      label: 'Render your blockie',
-    },
+    // {
+    //   label: 'Render your blockie',
+    // },
     {
       label: "Learn more",
       action: "post_redirect"

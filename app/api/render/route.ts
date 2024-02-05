@@ -44,34 +44,35 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   console.log(body)
 
-  if (buttonIndex != 1) {
-    if (buttonIndex == 2) pageUrl = `${NEXT_PUBLIC_URL}/github`
-    if (buttonIndex == 3) pageUrl = `${NEXT_PUBLIC_URL}/mint`
-    return NextResponse.redirect(pageUrl, {
-      status: 302
-    })
-  } else {
-    return new NextResponse(getFrameHtmlResponse({
-      buttons: [
-        {
-          label: `Render another`,
-        },
-        {
-          label: "Learn more",
-          action: "post_redirect"
-        },
-        {
-          label: "Mint one",
-          action: "post_redirect"
-        }
-      ],
-      input: {
-        text: "Enter another Eth address to render"
-      },
-      image: png,
-      post_url: pageUrl,
-    }),)
-  }
+  // if (buttonIndex != 1) {
+  if (buttonIndex == 1) pageUrl = `${NEXT_PUBLIC_URL}/github`
+  if (buttonIndex == 2) pageUrl = `${NEXT_PUBLIC_URL}/mint`
+  return NextResponse.redirect(pageUrl, {
+    status: 302
+  })
+  // }
+  // else {
+  //   return new NextResponse(getFrameHtmlResponse({
+  //     buttons: [
+  //       {
+  //         label: `Render another`,
+  //       },
+  //       {
+  //         label: "Learn more",
+  //         action: "post_redirect"
+  //       },
+  //       {
+  //         label: "Mint one",
+  //         action: "post_redirect"
+  //       }
+  //     ],
+  //     input: {
+  //       text: "Enter another Eth address to render"
+  //     },
+  //     image: png,
+  //     post_url: pageUrl,
+  //   }),)
+  // }
 }
 
 export const dynamic = 'force-dynamic';
