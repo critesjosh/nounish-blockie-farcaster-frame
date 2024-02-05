@@ -41,9 +41,9 @@ export async function POST(req: NextRequest): Promise<Response> {
   let pageUrl = `${NEXT_PUBLIC_URL}/api/render`
 
   if (message?.button !== 1) {
-    if (message?.button === 2) pageUrl = `${NEXT_PUBLIC_URL}/github`
-    if (message?.button === 3) pageUrl = `${NEXT_PUBLIC_URL}/mint`
-    return NextResponse.redirect(`${NEXT_PUBLIC_URL}/github`, {
+    if (message?.button === 2) pageUrl = 'https://github.com/critesjosh/nounish-blockies'
+    if (message?.button === 3) pageUrl = 'https://abi.ninja/0x76152c311630bBE2b472afE779f478B293CFAed3/mainnet?functions=mint'
+    return NextResponse.redirect(pageUrl, {
       status: 302
     })
   }
