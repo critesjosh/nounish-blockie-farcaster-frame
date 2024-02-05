@@ -41,8 +41,8 @@ export async function POST(req: NextRequest): Promise<Response> {
   let pageUrl = `${NEXT_PUBLIC_URL}/api/render`
 
   if (message?.button != 1) {
-    if (message?.button == 1) pageUrl = `${NEXT_PUBLIC_URL}/github`
-    if (message?.button == 2) pageUrl = `${NEXT_PUBLIC_URL}/mint`
+    if (message?.button == 2) pageUrl = `${NEXT_PUBLIC_URL}/github`
+    if (message?.button == 3) pageUrl = `${NEXT_PUBLIC_URL}/mint`
     return NextResponse.redirect(`${NEXT_PUBLIC_URL}/github`, {
       status: 302
     })
