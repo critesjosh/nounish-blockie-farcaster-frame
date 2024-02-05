@@ -61,11 +61,11 @@ export async function POST(req: NextRequest): Promise<Response> {
       },
       {
         label: "Learn more",
-        action: "post_redirect"
+        // action: "post_redirect"
       },
       {
         label: "Mint one",
-        action: "post_redirect"
+        // action: "post_redirect"
       }
     ],
     input: {
