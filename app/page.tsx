@@ -6,16 +6,8 @@ const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
 const frameMetadata = getFrameMetadata({
   buttons: [
-    // {
-    //   label: 'Render your blockie',
-    // },
     {
-      label: "Learn more",
-      action: "post_redirect"
-    },
-    {
-      label: "Mint one",
-      action: "post_redirect"
+      label: 'Render your blockie',
     }
   ],
   image: `${NEXT_PUBLIC_URL}/head.png`,
