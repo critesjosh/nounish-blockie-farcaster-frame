@@ -9,9 +9,9 @@ export default function RedirectPage() {
         const url = 'https://github.com/critesjosh/nounish-blockies';
 
         // Perform the redirect
-        window.location.href = url; // For a full page reload redirect
+        // window.location.href = url; // For a full page reload redirect
         // Or use Next.js router for client-side redirect (comment out the line above if using this)
-        // router.push(youtubeUrl);
+        router.push(url);
     }, [router]);
 
     return (
