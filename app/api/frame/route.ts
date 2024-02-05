@@ -143,10 +143,8 @@ export async function POST(req: NextRequest): Promise<Response> {
     path = "frame"
   } else if (buttonIndex == 2) {
     path = "github"
-    pageUrl = "https://github.com/critesjosh/nounish-blockies"
   } else {
     path = "mint"
-    pageUrl = "https://abi.ninja/0x76152c311630bBE2b472afE779f478B293CFAed3/mainnet?functions=mint"
   }
   pageUrl = pageUrl + path
 

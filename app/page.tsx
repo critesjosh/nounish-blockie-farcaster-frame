@@ -11,9 +11,6 @@ const frameMetadata = getFrameMetadata({
     },
   ],
   image: `${NEXT_PUBLIC_URL}/head.png`,
-  // input: {
-  //   text: 'Tell me a boat story',
-  // },
   post_url: `${NEXT_PUBLIC_URL}/api/frame`,
 });
 
