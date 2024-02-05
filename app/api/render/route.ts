@@ -52,28 +52,28 @@ export async function POST(req: NextRequest): Promise<Response> {
     return NextResponse.redirect(pageUrl, {
       status: 302
     })
+  } else {
+    return new NextResponse(getFrameHtmlResponse({
+      buttons: [
+        {
+          label: `Render another`,
+        },
+        {
+          label: "Learn more",
+          action: "post_redirect"
+        },
+        {
+          label: "Mint one",
+          action: "post_redirect"
+        }
+      ],
+      input: {
+        text: "Enter an Eth address to render"
+      },
+      image: png,
+      post_url: pageUrl,
+    }),)
   }
-
-  return new NextResponse(getFrameHtmlResponse({
-    buttons: [
-      {
-        label: `Render another`,
-      },
-      {
-        label: "Learn more",
-        // action: "post_redirect"
-      },
-      {
-        label: "Mint one",
-        // action: "post_redirect"
-      }
-    ],
-    input: {
-      text: "Enter an Eth address to render"
-    },
-    image: png,
-    post_url: pageUrl,
-  }),)
 }
 
 export const dynamic = 'force-dynamic';
