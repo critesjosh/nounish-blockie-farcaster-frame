@@ -42,9 +42,7 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   const buttonIndex = body.untrustedData.buttonIndex
 
-  console.log("button index", buttonIndex)
-
-  console.log("page url", pageUrl)
+  console.log(body)
 
   if (buttonIndex == 2 || buttonIndex == 3) {
     if (buttonIndex == 2) pageUrl = `${NEXT_PUBLIC_URL}/github`
