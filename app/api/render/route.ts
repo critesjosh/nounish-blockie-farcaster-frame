@@ -42,7 +42,7 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   if (message?.button !== 1) {
     if (message?.button === 2) pageUrl = 'https://github.com/critesjosh/nounish-blockies'
-    if (message?.button === 3) pageUrl = 'https://abi.ninja/0x76152c311630bBE2b472afE779f478B293CFAed3/mainnet?functions=mint'
+    if (message?.button === 3) pageUrl = 'https://etherscan.io/address/0x76152c311630bbe2b472afe779f478b293cfaed3#writeContract'
     return NextResponse.redirect(pageUrl, {
       status: 302
     })
